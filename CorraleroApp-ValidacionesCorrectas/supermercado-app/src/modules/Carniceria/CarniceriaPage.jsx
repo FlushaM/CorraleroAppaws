@@ -49,7 +49,7 @@ const CarniceriaPage = () => {
     }
   
     try {
-      const response = await axios.get(`https://corralerointranet.cl/api/productos/${codigo}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/productos/${codigo}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   
@@ -177,7 +177,7 @@ const CarniceriaPage = () => {
       if (result.isConfirmed) {
         try {
           await axios.post(
-            "https://corralerointranet.cl/api/entregas",
+            "${process.env.REACT_APP_API_URL}/entregas/",
             { productos, responsable: user.nombre || user.email },
             { headers: { Authorization: `Bearer ${token}` } }
           );
