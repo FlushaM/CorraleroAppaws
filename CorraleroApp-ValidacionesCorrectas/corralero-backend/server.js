@@ -41,7 +41,7 @@ app.get('*', (req, res) => {
 });
 
 // Conexión con el puerto
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 0;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });

@@ -177,7 +177,7 @@ const CarniceriaPage = () => {
       if (result.isConfirmed) {
         try {
           await axios.post(
-            "${process.env.REACT_APP_API_URL}/entregas/",
+            `${process.env.REACT_APP_API_URL}/entregas/`,
             { productos, responsable: user.nombre || user.email },
             { headers: { Authorization: `Bearer ${token}` } }
           );
