@@ -14,11 +14,10 @@ const LoginPage = () => {
     e.preventDefault();
   
     // Definir la URL base de la API con una validación
-    const API_URL = process.env.REACT_APP_API_URL || 'https://corralerointranet.cl/api';
-  
+
     try {
       // Realizar la solicitud POST a la API de login
-      const response = await axios.post(`${API_URL}/auth/login`, {
+      const response = await axios.post('https://corralerointranet.cl/api/auth/login', {
         email,
         password,
       });

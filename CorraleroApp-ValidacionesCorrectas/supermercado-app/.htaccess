@@ -5,12 +5,12 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Redirigir solicitudes API al backend
 RewriteCond %{REQUEST_URI} ^/api/
-RewriteRule ^api/(.*)$ backend/server.js [L,NC,QSA]
+RewriteRule ^api/(.*)$ https://corralerointranet.cl/api/$1 [L,NC,QSA]
 
 # Redirigir todas las demás solicitudes al frontend (SPA)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
+RewriteRule ^ /index.html [L]
 
 # Configurar headers de seguridad
 <IfModule mod_headers.c>
