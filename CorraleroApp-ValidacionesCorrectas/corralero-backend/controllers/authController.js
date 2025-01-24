@@ -1,6 +1,7 @@
 const { Usuario } = require('../models'); // Importa el modelo de Usuario
 const jwt = require('jsonwebtoken');
 
+
 // Controlador para iniciar sesión
 const login = async (req, res) => {
     const { email, password } = req.body;

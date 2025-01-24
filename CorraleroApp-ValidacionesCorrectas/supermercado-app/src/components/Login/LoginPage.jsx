@@ -12,42 +12,53 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+  
+    // Definir la URL base de la API con una validación
+    const API_URL = process.env.REACT_APP_API_URL || 'https://corralerointranet.cl/api';
+  
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      // Realizar la solicitud POST a la API de login
+      const response = await axios.post(`${API_URL}/auth/login`, {
         email,
         password,
       });
-
+  
+      // Extraer el token y el usuario de la respuesta
       const { token, user } = response.data;
-
-      // Verifica que los datos del usuario y token son correctos
-      console.log("Token recibido:", token);
-      console.log("Datos del usuario:", user);
-
-      // Guardar el token y el usuario en el localStorage
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user)); // Guarda el usuario completo
-
+  
+      // Verificar que se recibió un token y un usuario
+      if (!token || !user) {
+        throw new Error('Respuesta inválida del servidor');
+      }
+  
+      console.log('Token recibido:', token);
+      console.log('Datos del usuario:', user);
+  
+      // Guardar el token y el usuario en localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+  
       // Redirigir según el rol del usuario
       switch (user.rol) {
-        case "admin":
-          navigate("/dashboard");
+        case 'admin':
+          navigate('/dashboard');
           break;
-        case "carnicero":
-          navigate("/carniceria");
+        case 'carnicero':
+          navigate('/carniceria');
           break;
-        case "verdulero":
-          navigate("/verduleria");
+        case 'verdulero':
+          navigate('/verduleria');
           break;
-        case "roticeria":
-          navigate("/roticeria");
+        case 'roticeria':
+          navigate('/roticeria');
           break;
         default:
-          setError("Rol desconocido");
+          throw new Error('Rol desconocido');
       }
     } catch (error) {
-      console.error("Error en el inicio de sesión:", error);
-      setError("Credenciales incorrectas");
+      // Manejo de errores
+      console.error('Error en el inicio de sesión:', error.response?.data || error.message);
+      setError('Credenciales incorrectas o problema con el servidor');
     }
   };
 

@@ -1,4 +1,5 @@
-require('dotenv').config(); // Cargar variables de entorno
+require('dotenv').config(); // Cargar variables de entorno al inicio
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path'); // Importar para servir archivos estáticos
@@ -11,7 +12,11 @@ const verifyToken = require('./middlewares/authMiddleware');
 const app = express();
 
 // Middleware global
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://corralerointranet.cl'], // Dominios permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
+}));
 app.use(express.json());
 
 // Sincronizar modelos con la base de datos
@@ -41,7 +46,7 @@ app.get('*', (req, res) => {
 });
 
 // Conexión con el puerto
-const PORT = process.env.PORT || 0;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
