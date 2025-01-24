@@ -2,7 +2,6 @@ require('dotenv').config(); // Cargar variables de entorno al inicio
 
 const express = require('express');
 const cors = require('cors');
-const path = require('path'); // Importar para servir archivos estáticos
 const { sequelize } = require('./models'); // Importar conexión y modelos
 const productosRoutes = require('./routes/productos');
 const entregasRoutes = require('./routes/entregas');
@@ -13,7 +12,7 @@ const app = express();
 
 // Middleware global
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://corralerointranet.cl'], // Dominios permitidos
+  origin: ['https://corralerointranet.cl'], // Dominios permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
 }));
@@ -37,16 +36,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/productos', verifyToken, productosRoutes);
 app.use('/api/entregas', verifyToken, entregasRoutes);
 
-// Servir archivos del frontend
-app.use(express.static(path.join(__dirname, '../public_html')));
-
-// Manejador para rutas desconocidas (sirve el frontend)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public_html/index.html'));
+// Ruta de prueba
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Backend funcionando correctamente' });
 });
 
-// Conexión con el puerto
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+// Exportar la aplicación para Vercel
+module.exports = app;
