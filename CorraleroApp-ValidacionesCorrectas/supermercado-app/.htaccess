@@ -3,11 +3,11 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirigir todas las solicitudes que comiencen con /api al backend
+# Redirigir solicitudes API al backend
 RewriteCond %{REQUEST_URI} ^/api/
-RewriteRule ^api/(.*)$ backend/server.js/$1 [L,NC,QSA]
+RewriteRule ^api/(.*)$ backend/server.js [L,NC,QSA]
 
-# Redirigir todas las demás solicitudes al frontend
+# Redirigir todas las demás solicitudes al frontend (SPA)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]
@@ -18,7 +18,3 @@ RewriteRule ^ index.html [L]
     Header always set X-Frame-Options "DENY"
     Header always set X-XSS-Protection "1; mode=block"
 </IfModule>
-
-<FilesMatch "\.(env|json|lock|git)">
-    Require all denied
-</FilesMatch>
