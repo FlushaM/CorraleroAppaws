@@ -5,7 +5,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Redirigir todas las solicitudes que comiencen con /api al backend
 RewriteCond %{REQUEST_URI} ^/api/
-RewriteRule ^api/(.*)$ ../backend/$1 [L,NC,QSA]
+RewriteRule ^api/(.*)$ backend/$1 [L,NC,QSA]
 
 # Redirigir todas las demás solicitudes al frontend para SPA
 RewriteCond %{REQUEST_FILENAME} !-f
