@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock, LogIn } from "lucide-react"; // Íconos usados en la plantilla
-import "./LoginPage.css"; // Archivo CSS
+import { Mail, Lock, LogIn } from "lucide-react";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -12,31 +12,26 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
-    // Definir la URL base de la API con una validación
 
     try {
       // Realizar la solicitud POST a la API de login
-      const response = await axios.post('https://corralerointranet.cl/api/auth/login', {
+      const response = await axios.post('/api/auth/login', { // Cambiado a /api
         email,
         password,
       });
-  
-      // Extraer el token y el usuario de la respuesta
+
       const { token, user } = response.data;
-  
-      // Verificar que se recibió un token y un usuario
+
       if (!token || !user) {
         throw new Error('Respuesta inválida del servidor');
       }
-  
+
       console.log('Token recibido:', token);
       console.log('Datos del usuario:', user);
-  
-      // Guardar el token y el usuario en localStorage
+
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
-  
+
       // Redirigir según el rol del usuario
       switch (user.rol) {
         case 'admin':
@@ -55,7 +50,6 @@ const LoginPage = () => {
           throw new Error('Rol desconocido');
       }
     } catch (error) {
-      // Manejo de errores
       console.error('Error en el inicio de sesión:', error.response?.data || error.message);
       setError('Credenciales incorrectas o problema con el servidor');
     }
@@ -68,9 +62,9 @@ const LoginPage = () => {
         <div className="hidden lg:block w-1/2 bg-slate-100 p-12 flex flex-col justify-between">
           <div className="text-slate-800">
             <LogIn className="h-12 w-12 mb-6" />
-            <h1 className="text-3xl font-bold mb-4">Bienvenido a Corralero Intranet </h1>
+            <h1 className="text-3xl font-bold mb-4">Bienvenido a Corralero Intranet</h1>
             <p className="text-slate-600">
-              Portal de inicio de sesión de su area de Trabajo
+              Portal de inicio de sesión de su área de Trabajo
             </p>
           </div>
           <img
