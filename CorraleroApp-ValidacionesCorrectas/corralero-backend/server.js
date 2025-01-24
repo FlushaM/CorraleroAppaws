@@ -36,7 +36,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/productos', verifyToken, productosRoutes);
 app.use('/api/entregas', verifyToken, entregasRoutes);
 
-// Ruta de prueba
+// Ruta de prueba para verificar que el backend está funcionando
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend funcionando correctamente' });
 });
