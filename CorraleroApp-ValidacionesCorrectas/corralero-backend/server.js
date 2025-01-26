@@ -41,6 +41,11 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend funcionando correctamente' });
 });
 
+
+app.get('/', (req, res) => {
+  res.send('Corralero Backend funcionando');
+});
+
 app.get('/api/protegida', verifyToken, (req, res) => {
   res.json({ message: 'Acceso permitido', user: req.user });
 });
