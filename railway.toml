@@ -1,0 +1,5 @@
+[build]
+context = "./corralero-backend"
+
+[deploy]
+start = "npm start"
