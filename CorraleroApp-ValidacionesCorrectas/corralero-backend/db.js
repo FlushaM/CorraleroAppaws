@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+const mysql2 = require('mysql2'); // Importa el módulo mysql2
 require('dotenv').config();
 
 const sequelize = new Sequelize(
@@ -8,7 +9,9 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: 'mysql', // Especifica que usarás MySQL
+    dialectModule: mysql2, // Incluye el módulo mysql2 explícitamente
     logging: false, // Deshabilita el logging de consultas SQL
+    port: process.env.DB_PORT || 3306, // Usa el puerto especificado o el predeterminado
   }
 );
 
