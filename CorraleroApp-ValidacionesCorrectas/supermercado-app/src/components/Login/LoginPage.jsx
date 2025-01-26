@@ -15,10 +15,11 @@ const LoginPage = () => {
 
     try {
       // Realizar la solicitud POST a la API de login
-      const response = await axios.post('/api/auth/login', { // Cambiado a /api
+      const response = await axios.post(`${API_URL}/auth/login`, {
         email,
         password,
       });
+      
 
       const { token, user } = response.data;
 
