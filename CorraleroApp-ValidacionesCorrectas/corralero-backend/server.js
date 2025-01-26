@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware global
 app.use(cors({
-  origin: ['https://corralerointranet.cl' , "http://localhost:4000" ,"https://corralero-backed.vercel.app/"], // Dominios permitidos
+  origin: ['https://corralerointranet.cl' , "http://localhost:4000" ,"https://corralero-backed.vercel.app"], // Dominios permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
 }));
