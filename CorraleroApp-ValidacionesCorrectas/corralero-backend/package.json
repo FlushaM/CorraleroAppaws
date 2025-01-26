@@ -6,7 +6,11 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["backend", "corralero", "nodejs"],
+  "keywords": [
+    "backend",
+    "corralero",
+    "nodejs"
+  ],
   "author": "Matias Rojas",
   "license": "ISC",
   "description": "Backend para el sistema Corralero",
