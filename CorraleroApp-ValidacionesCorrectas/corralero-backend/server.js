@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware global
 app.use(cors({
-  origin: ['https://corralerointranet.cl'], // Dominios permitidos
+  origin: ['https://corralerointranet.cl' , "http://localhost:4000"], // Dominios permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
 }));
@@ -40,6 +40,14 @@ app.use('/api/entregas', verifyToken, entregasRoutes);
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend funcionando correctamente' });
 });
+
+app.get('/api/protegida', verifyToken, (req, res) => {
+  res.json({ message: 'Acceso permitido', user: req.user });
+});
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
+
 
 // Exportar la aplicación para Vercel
 module.exports = app;
