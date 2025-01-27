@@ -48,7 +48,7 @@ const EntregaPage = ({ title }) => {
     }
 
     try {
-      const response = await axios.get(`https://corralerointranet.cl/api/productos/${codigo}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/productos/${codigo}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -181,7 +181,7 @@ const EntregaPage = ({ title }) => {
           };
           console.log("Payload enviado:", payload); // Debugging
           await axios.post(
-            "https://corralerointranet.cl/api/entregas/",
+            `${process.env.REACT_APP_API_URL}/entregas/`,
             payload,
             {
               headers: { Authorization: `Bearer ${token}` },
