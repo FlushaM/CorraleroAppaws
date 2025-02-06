@@ -50,9 +50,7 @@ const LoginPage = () => {
         case "panadero":
           navigate("/panaderia"); // Nueva ruta para panadero
           break;
-        case "recursoshumanos":
-          navigate("/recursoshumanos"); // Nueva ruta para recursos humanos
-          break;
+          
         default:
           throw new Error("Rol desconocido");
       }

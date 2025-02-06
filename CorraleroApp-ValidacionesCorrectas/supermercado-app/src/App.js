@@ -6,7 +6,7 @@ import CarniceriaPage from './modules/Carniceria/CarniceriaPage';
 import VerduleriaPage from './modules/Verduleria/VerduleriaPage';
 import RoticeriaPage from './modules/Roticeria/RoticeriaPage';
 import PanaderiaPage from './modules/Panaderia/PanaderiaPage'; // Nuevo módulo
-import RecursosHumanosPage from './modules/RecursosHumanos/RecursosHumanosPage'; // Si lo necesitas
+
 
 const App = () => {
     return (
@@ -30,8 +30,7 @@ const App = () => {
                 {/* Ruta para Panadería */}
                 <Route path="/panaderia" element={<PanaderiaPage />} />
                 
-                {/* Ruta para Recursos Humanos */}
-                <Route path="/recursoshumanos" element={<RecursosHumanosPage />} />
+
             </Routes>
         </Router>
     );
