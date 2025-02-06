@@ -11,7 +11,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
 
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -21,40 +20,45 @@ const LoginPage = () => {
         email,
         password,
       });
-      
 
       const { token, user } = response.data;
 
       if (!token || !user) {
-        throw new Error('Respuesta inválida del servidor');
+        throw new Error("Respuesta inválida del servidor");
       }
 
-      console.log('Token recibido:', token);
-      console.log('Datos del usuario:', user);
+      console.log("Token recibido:", token);
+      console.log("Datos del usuario:", user);
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
 
       // Redirigir según el rol del usuario
       switch (user.rol) {
-        case 'admin':
-          navigate('/dashboard');
+        case "admin":
+          navigate("/dashboard");
           break;
-        case 'carnicero':
-          navigate('/carniceria');
+        case "carnicero":
+          navigate("/carniceria");
           break;
-        case 'verdulero':
-          navigate('/verduleria');
+        case "verdulero":
+          navigate("/verduleria");
           break;
-        case 'roticeria':
-          navigate('/roticeria');
+        case "roticeria":
+          navigate("/roticeria");
+          break;
+        case "panadero":
+          navigate("/panaderia"); // Nueva ruta para panadero
+          break;
+        case "recursoshumanos":
+          navigate("/recursoshumanos"); // Nueva ruta para recursos humanos
           break;
         default:
-          throw new Error('Rol desconocido');
+          throw new Error("Rol desconocido");
       }
     } catch (error) {
-      console.error('Error en el inicio de sesión:', error.response?.data || error.message);
-      setError('Credenciales incorrectas o problema con el servidor');
+      console.error("Error en el inicio de sesión:", error.response?.data || error.message);
+      setError("Credenciales incorrectas o problema con el servidor");
     }
   };
 
