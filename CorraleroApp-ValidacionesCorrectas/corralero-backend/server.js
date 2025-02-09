@@ -35,6 +35,10 @@ app.use('/api/auth', authRoutes);
 // Rutas protegidas por JWT (API)
 app.use('/api/productos', verifyToken, productosRoutes);
 app.use('/api/entregas', verifyToken, entregasRoutes);
+<<<<<<< HEAD
+=======
+app.use('/api/marcajes', marcajesRoutes);
+>>>>>>> parent of fd227e4 (update)
 
 // Ruta de prueba para verificar que el backend está funcionando
 app.get('/api/test', (req, res) => {
