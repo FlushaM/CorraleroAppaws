@@ -36,7 +36,7 @@ app.use('/api/auth', authRoutes);
 // Rutas protegidas por JWT (API)
 app.use('/api/productos', verifyToken, productosRoutes);
 app.use('/api/entregas', verifyToken, entregasRoutes);
-app.use('/api/marcajes', marcajesRoutes);
+app.use('/api/marcajes', verifyToken, marcajesRoutes);
 
 // Ruta de prueba para verificar que el backend está funcionando
 app.get('/api/test', (req, res) => {

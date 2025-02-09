@@ -1,18 +1,19 @@
-// routes/marcajes.js
 const express = require('express');
 const router = express.Router();
 const marcajesController = require('../controllers/marcajesController');
+const verifyToken = require('../middlewares/authMiddleware');
+const verifyRole = require('../middlewares/verifyRole');
 
-// POST /api/marcajes → Registrar un marcaje
-router.post('/', marcajesController.registrarMarcaje);
+//Solo usuarios con rol 'reloj' pueden registrar marcajes
+router.post('/', verifyToken, verifyRole(['reloj']), marcajesController.registrarMarcaje);
 
-// GET /api/marcajes → Listar marcajes
-router.get('/', marcajesController.obtenerMarcajes);
+//  Solo 'admin' y 'reloj' pueden ver marcajes
+router.get('/', verifyToken, verifyRole(['admin', 'reloj']), marcajesController.obtenerMarcajes);
 
-// GET /api/marcajes/:id → Obtener un marcaje específico
-router.get('/:id', marcajesController.obtenerMarcaje);
+//  Solo 'admin' y 'reloj' pueden obtener un marcaje específico
+router.get('/:id', verifyToken, verifyRole(['admin', 'reloj']), marcajesController.obtenerMarcaje);
 
-// DELETE /api/marcajes/:id → Eliminar un marcaje
-router.delete('/:id', marcajesController.eliminarMarcaje);
+//  Solo 'admin' puede eliminar un marcaje
+router.delete('/:id', verifyToken, verifyRole(['admin']), marcajesController.eliminarMarcaje);
 
 module.exports = router;
