@@ -5,7 +5,6 @@ const cors = require('cors');
 const { sequelize } = require('./models'); // Importar conexión y modelos
 const productosRoutes = require('./routes/productos');
 const entregasRoutes = require('./routes/entregas');
-const marcajesRoutes = require('./routes/marcajes');
 const authRoutes = require('./routes/auth');
 const verifyToken = require('./middlewares/authMiddleware');
 
@@ -13,22 +12,11 @@ const app = express();
 
 // Middleware global
 app.use(cors({
-  origin: (origin, callback) => {
-    const allowedOrigins = [
-      'https://corralerointranet.cl',
-      'http://localhost:4000',
-      'https://corralero-backed.vercel.app',
-      /\.vercel\.app$/ // Permite subdominios de Vercel
-    ];
-    if (!origin || allowedOrigins.some(o => o instanceof RegExp ? o.test(origin) : o === origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('No permitido por política de CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: ['https://corralerointranet.cl' , "http://localhost:4000" ,"https://corralero-backed.vercel.app"], // Dominios permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
 }));
+app.use(express.json());
 
 // Sincronizar modelos con la base de datos
 (async () => {
@@ -47,7 +35,6 @@ app.use('/api/auth', authRoutes);
 // Rutas protegidas por JWT (API)
 app.use('/api/productos', verifyToken, productosRoutes);
 app.use('/api/entregas', verifyToken, entregasRoutes);
-app.use('/api/marcajes', verifyToken, marcajesRoutes);
 
 // Ruta de prueba para verificar que el backend está funcionando
 app.get('/api/test', (req, res) => {

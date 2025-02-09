@@ -48,12 +48,9 @@ const LoginPage = () => {
           navigate("/roticeria");
           break;
         case "panadero":
-          navigate("/panaderia");
+          navigate("/panaderia"); // Nueva ruta para panadero
           break;
-        // NUEVO ROL:
-        case "reloj":
-          navigate("/reloj");
-          break;
+          
         default:
           throw new Error("Rol desconocido");
       }
