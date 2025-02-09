@@ -36,9 +36,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/productos', verifyToken, productosRoutes);
 app.use('/api/entregas', verifyToken, entregasRoutes);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 app.use('/api/marcajes', marcajesRoutes);
 >>>>>>> parent of fd227e4 (update)
+=======
+>>>>>>> parent of 93741ad (RelojMarcajeV1)
 
 // Ruta de prueba para verificar que el backend está funcionando
 app.get('/api/test', (req, res) => {
