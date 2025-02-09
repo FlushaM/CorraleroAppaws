@@ -5,8 +5,8 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import CarniceriaPage from './modules/Carniceria/CarniceriaPage';
 import VerduleriaPage from './modules/Verduleria/VerduleriaPage';
 import RoticeriaPage from './modules/Roticeria/RoticeriaPage';
-import PanaderiaPage from './modules/Panaderia/PanaderiaPage'; // Nuevo módulo
-
+import PanaderiaPage from './modules/Panaderia/PanaderiaPage';
+import TimeClockPage from './modules/Reloj/TimeClockPage'; // Importamos tu nueva página
 
 const App = () => {
     return (
@@ -30,7 +30,8 @@ const App = () => {
                 {/* Ruta para Panadería */}
                 <Route path="/panaderia" element={<PanaderiaPage />} />
                 
-
+                {/* Ruta para el Reloj (Controlador de marcajes) */}
+                <Route path="/reloj" element={<TimeClockPage />} />
             </Routes>
         </Router>
     );

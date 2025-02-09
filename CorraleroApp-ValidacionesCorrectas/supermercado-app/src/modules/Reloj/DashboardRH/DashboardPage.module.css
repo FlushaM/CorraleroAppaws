@@ -1,0 +1,48 @@
+.searchInput {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .searchInput:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+  
+  .employeeCard {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .employeeCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .employeeCard.selected {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+  }
+  
+  .showMoreButton {
+    color: #2563eb;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .showMoreButton:hover {
+    color: #1d4ed8;
+  }
+  
+  .recordRow {
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .recordRow.overtime {
+    background-color: #f0fdf4;
+  }
+  
+  .recordRow.missing {
+    background-color: #fef2f2;
+  }
