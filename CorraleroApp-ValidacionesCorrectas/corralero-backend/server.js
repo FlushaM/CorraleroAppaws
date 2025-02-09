@@ -38,9 +38,12 @@ app.use('/api/entregas', verifyToken, entregasRoutes);
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 app.use('/api/marcajes', marcajesRoutes);
 >>>>>>> parent of fd227e4 (update)
+=======
+>>>>>>> parent of 93741ad (RelojMarcajeV1)
 =======
 >>>>>>> parent of 93741ad (RelojMarcajeV1)
 =======

@@ -7,12 +7,17 @@ import VerduleriaPage from './modules/Verduleria/VerduleriaPage';
 import RoticeriaPage from './modules/Roticeria/RoticeriaPage';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import PanaderiaPage from './modules/Panaderia/PanaderiaPage'; // Nuevo módulo
 
 =======
 import PanaderiaPage from './modules/Panaderia/PanaderiaPage';
 import TimeClockPage from './modules/Reloj/TimeClockPage'; // Importamos tu nueva página
 >>>>>>> parent of 97f4b5a (Update App.js)
+=======
+import PanaderiaPage from './modules/Panaderia/PanaderiaPage'; // Nuevo módulo
+
+>>>>>>> parent of 93741ad (RelojMarcajeV1)
 =======
 import PanaderiaPage from './modules/Panaderia/PanaderiaPage'; // Nuevo módulo
 
