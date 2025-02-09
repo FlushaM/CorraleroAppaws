@@ -6,7 +6,7 @@ import CarniceriaPage from './modules/Carniceria/CarniceriaPage';
 import VerduleriaPage from './modules/Verduleria/VerduleriaPage';
 import RoticeriaPage from './modules/Roticeria/RoticeriaPage';
 import PanaderiaPage from './modules/Panaderia/PanaderiaPage';
-import TimeClockPage from './modules/Reloj/TimeClockPage'; // Importamos tu nueva página
+import TimeClockPage from './modules/Reloj/RelojControlador/TimeClockPage'; // Importamos tu nueva página
 
 const App = () => {
     return (
