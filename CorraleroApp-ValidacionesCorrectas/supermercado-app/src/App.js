@@ -5,8 +5,13 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import CarniceriaPage from './modules/Carniceria/CarniceriaPage';
 import VerduleriaPage from './modules/Verduleria/VerduleriaPage';
 import RoticeriaPage from './modules/Roticeria/RoticeriaPage';
+<<<<<<< HEAD
 import PanaderiaPage from './modules/Panaderia/PanaderiaPage'; // Nuevo módulo
 
+=======
+import PanaderiaPage from './modules/Panaderia/PanaderiaPage';
+import TimeClockPage from './modules/Reloj/TimeClockPage'; // Importamos tu nueva página
+>>>>>>> parent of 97f4b5a (Update App.js)
 
 const App = () => {
     return (
