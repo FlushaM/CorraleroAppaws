@@ -13,11 +13,22 @@ const app = express();
 
 // Middleware global
 app.use(cors({
-  origin: ['https://corralerointranet.cl' , "http://localhost:4000" ,"https://corralero-backed.vercel.app"], // Dominios permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'https://corralerointranet.cl',
+      'http://localhost:4000',
+      'https://corralero-backed.vercel.app',
+      /\.vercel\.app$/ // Permite subdominios de Vercel
+    ];
+    if (!origin || allowedOrigins.some(o => o instanceof RegExp ? o.test(origin) : o === origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por política de CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-app.use(express.json());
 
 // Sincronizar modelos con la base de datos
 (async () => {
