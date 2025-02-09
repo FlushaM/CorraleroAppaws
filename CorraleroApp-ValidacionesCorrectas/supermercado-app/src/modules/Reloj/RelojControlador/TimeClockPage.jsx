@@ -2,20 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Clock, ScanBarcode as BarcodeScan, LogIn, LogOut, Building2 } from 'lucide-react';
 
-type EmployeeState = {
-  name: string;
-  rut: string;
-  checkInTime?: string;
-  checkOutTime?: string;
-  afternoonCheckIn?: string;
-  afternoonCheckOut?: string;
-  extraHours?: string;
-};
-
 function TimeClockPage() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [barcodeInput, setBarcodeInput] = useState('');
-  const [employeeData, setEmployeeData] = useState<EmployeeState | null>(null);
+  const [employeeData, setEmployeeData] = useState(null);
 
   // Actualiza la hora cada segundo
   useEffect(() => {
@@ -26,38 +16,21 @@ function TimeClockPage() {
   }, []);
 
   // SUBMIT del código de barras
-  const handleBarcodeSubmit = async (e: React.FormEvent) => {
+  const handleBarcodeSubmit = async (e) => {
     e.preventDefault();
     if (!barcodeInput) return;
 
     try {
-      // Llamada al endpoint: POST /api/marcajes
       const response = await axios.post('/api/marcajes', {
         codigoBarras: barcodeInput
       });
 
-      /*
-        Estructura esperada de la respuesta:
-        {
-          message: "...",
-          empleado: { id, nombre_completo, rut, ... },
-          marcaje: {
-            id, fecha, entrada_manana, salida_manana, entrada_tarde, salida_tarde, ...
-          }
-        }
-       */
-
       const data = response.data;
       if (data.error) {
-        // Manejar error devuelto desde el servidor
         console.error(data.error);
       } else {
-        // Extraer datos
         const { empleado, marcaje } = data;
-        // Ajustar tu estado al front:
-        // Mapear las columnas de "marcaje" a checkInTime, checkOutTime, etc. a tu gusto.
-        // Por ejemplo:
-        const newEmployeeData: EmployeeState = {
+        const newEmployeeData = {
           name: empleado.nombre_completo,
           rut: empleado.rut,
           checkInTime: marcaje.entrada_manana || '--:--',
@@ -72,7 +45,6 @@ function TimeClockPage() {
       console.error('Error al registrar marcaje:', error);
     }
 
-    // Limpia el campo de texto
     setBarcodeInput('');
   };
 
